@@ -1,0 +1,31 @@
+p I=0.075
+
+v(0)=-0.127
+w(0)=0.133
+
+gca=1.0
+gk=2.0
+gl=0.5
+vk=-0.7
+vl=-0.5
+f=1.15
+
+v1=-0.01
+v2=0.15
+v3=0.1
+v4=0.145
+
+minf=0.5*(1.0+tanh((v-v1)/v2))
+winf=0.5*(1.0+tanh((v-v3)/v4))
+tauw=1.0/cosh((v-v3)/(2.0*v4))
+
+
+
+v'=-gca*minf*(v-1.0)-gk*w*(v-vk)-gl*(v-vl)+I
+w'=f*(winf-w)/tauw
+
+@ xp=v,yp=w,xlo=-0.5,xhi=0.2,ylo=-0.1,yhi=0.5
+@ bounds=100000,maxstore=100000,nmesh=200,total=10.0
+@ method=runge-kutta,dt=0.001
+ 
+done
